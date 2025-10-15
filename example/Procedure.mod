@@ -1,0 +1,10 @@
+MODULE Proctest;
+
+VAR x: INTEGER;
+
+PROCEDURE TEST();
+BEGIN
+    RETURN 10;
+END TEST.
+
+END Proctest.
