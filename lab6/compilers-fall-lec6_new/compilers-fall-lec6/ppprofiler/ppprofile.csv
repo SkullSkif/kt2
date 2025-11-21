@@ -1,0 +1,7 @@
+enter_two_args|main|1898292|0x7ffedb5dd020
+enter getpid()|1933609|0x7ffedb5dd020
+enter|my_second_func|1970088|0x7ffedb5dcfe0
+exit|my_second_func|1972151|0x7ffedb5dcfe0
+enter_two_args|my_func|1973845|0x7ffedb5dcfe0
+exit_two_args|my_func|1975628|0x7ffedb5dcfe0
+exit_two_args|main|1977281|0x7ffedb5dd020

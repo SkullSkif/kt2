@@ -1,0 +1,14 @@
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/intrinsics_gen.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/vt_gen.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/omp_gen.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/acc_gen.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/target_parser_gen.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/PPProfiler.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/install-PPProfiler.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/install-PPProfiler-stripped.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/edit_cache.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/rebuild_cache.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/list_install_components.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/install.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/install/local.dir
+/home/vlad/KT2/rep/kt2/lab6/compilers-fall-lec6-old/ppprofiler/build/CMakeFiles/install/strip.dir
