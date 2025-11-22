@@ -21,9 +21,6 @@ public:
   llvm::PreservedAnalyses
   run(llvm::Module &M, llvm::ModuleAnalysisManager &AM);
 
-  llvm::PreservedAnalyses
-  CallProfiler(llvm::Module &M, llvm::ModuleAnalysisManager &AM, llvm::Function &F);
-
 private:
   void instrument(llvm::Function &F,
                   llvm::Function *EnterFn,
@@ -60,28 +57,6 @@ void PPProfilerIRPass::instrument(llvm::Function &F,
 }
 
 PreservedAnalyses
-PPProfilerIRPass::CallProfiler(llvm::Module &M, 
-                  llvm::ModuleAnalysisManager &AM,
-                  llvm::Function &F) {
-  Type *VoidTy = Type::getVoidTy(M.getContext());
-  FunctionType *FnTp = FunctionType::get(VoidTy, false);
-  FunctionCallee GetPidFn = M.getOrInsertFunction("entered_getpid", FnTp);
-  for (auto &BB : F) {
-    for (auto &I : BB) {
-      if (auto *CI = dyn_cast<CallInst>(&I)) {
-        Function *calledFunc = CI->getCalledFunction();
-        if (calledFunc && calledFunc->hasName() &&
-            calledFunc->getName() == "getpid") {
-            IRBuilder<> Builder(CI);
-            Builder.CreateCall(GetPidFn);
-        }
-      }
-    }
-  }
-  return PreservedAnalyses::none();
-}
-
-PreservedAnalyses
 PPProfilerIRPass::run(Module &M,
                       ModuleAnalysisManager &AM) {
   // Do not instrument the runtime functions.
@@ -103,22 +78,11 @@ PPProfilerIRPass::run(Module &M,
   Function *ExitFn = Function::Create(
       EnterExitFty, GlobalValue::ExternalLinkage,
       "__ppp_exit", M);
-  Function *EnterTwoArgsFn = Function::Create(
-      EnterExitFty, GlobalValue::ExternalLinkage,
-      "__ppp_ent_two_args", M);
-  Function *ExitTwoArgsFn = Function::Create(
-      EnterExitFty, GlobalValue::ExternalLinkage,
-      "__ppp_ext_two_args", M);
 
   // Call enter function.
   for (auto &F : M.functions()) {
-    if (!F.isDeclaration() && F.hasName()) {
-      if (F.arg_size() == 2)
-        instrument (F, EnterTwoArgsFn, ExitTwoArgsFn);
-      else
-        instrument(F, EnterFn, ExitFn);
-    }
-    CallProfiler(M, AM, F);
+    if (!F.isDeclaration() && F.hasName())
+      instrument(F, EnterFn, ExitFn);
   }
   return PreservedAnalyses::none();
 }

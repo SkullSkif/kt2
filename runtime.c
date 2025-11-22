@@ -43,27 +43,3 @@ void __ppp_exit(const char *FnName) {
           // "exit|name|clock|frame"
           "exit|%s|%llu|%p\n", FnName, T, Frame);
 }
-void __ppp_ent_two_args(const char *FnName) {
-  init();
-  Time T = get_time();
-  void *Frame = __builtin_frame_address(1);
-  fprintf(FileFD,
-          // "enter|name|clock|frame"
-          "enter_two_args|%s|%llu|%p\n", FnName, T, Frame);
-}
-
-void __ppp_ext_two_args(const char *FnName) {
-  init();
-  Time T = get_time();
-  void *Frame = __builtin_frame_address(1);
-  fprintf(FileFD,
-          // "exit|name|clock|frame"
-          "exit_two_args|%s|%llu|%p\n", FnName, T, Frame);
-}
-
-void entered_getpid() {
-  init();
-  Time T = get_time();
-  void *Frame = __builtin_frame_address(1);
-  fprintf(FileFD, "enter getpid()|%llu|%p\n", T, Frame);
-}
