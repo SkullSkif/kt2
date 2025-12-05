@@ -93,13 +93,20 @@ public:
   createObjectLinkingLayer(
       llvm::orc::ExecutionSession &ES,
       llvm::orc::JITTargetMachineBuilder &JTMB) {
-    auto GetMemoryManager = []() {
-      return std::make_unique<
-          llvm::SectionMemoryManager>();
-    };
+    // auto GetMemoryManager = []() {
+    //   return std::make_unique<
+    //       llvm::SectionMemoryManager>();
+    // };
+    // auto OLLayer = std::make_unique<
+    //     llvm::orc::RTDyldObjectLinkingLayer>(
+    //     ES, GetMemoryManager);
     auto OLLayer = std::make_unique<
         llvm::orc::RTDyldObjectLinkingLayer>(
-        ES, GetMemoryManager);
+        ES, [](llvm::MemoryBuffer const& ObjToLoad) {
+        return std::make_unique<
+            llvm::SectionMemoryManager>();
+      }
+    );
     if (JTMB.getTargetTriple().isOSBinFormatCOFF()) {
       OLLayer
           ->setOverrideObjectFlagsWithResponsibilityFlags(
